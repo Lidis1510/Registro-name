@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Síntomas - Lidis Cuenca</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    input, textarea, button {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    #registros {
+      margin-top: 30px;
+    }
+    .registro {
+      background: #e0f7fa;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registro Diario de Síntomas</h1>
+  <p><em>Creado por Lidis Cuenca - Junio 2025</em></p>
+
+  <label for="alimentos">¿Qué comiste hoy?</label>
+  <textarea id="alimentos" rows="3"></textarea>
+
+  <label for="sintomas">¿Qué síntomas sentiste?</label>
+  <textarea id="sintomas" rows="3"></textarea>
+
+  <label for="nivel">Nivel de malestar (0-10):</label>
+  <input type="number" id="nivel" min="0" max="10">
+
+  <button onclick="guardarRegistro()">Guardar Registro</button>
+
+  <div id="registros">
+    <h2>Registros anteriores</h2>
+  </div>
+
+  <script>
+    function guardarRegistro() {
+      const alimentos = document.getElementById('alimentos').value;
+      const sintomas = document.getElementById('sintomas').value;
+      const nivel = document.getElementById('nivel').value;
+      const fecha = new Date().toLocaleString();
+
+      const nuevoRegistro = document.createElement('div');
+      nuevoRegistro.className = 'registro';
+      nuevoRegistro.innerHTML = `<strong>Fecha:</strong> ${fecha}<br>
+        <strong>Alimentos:</strong> ${alimentos}<br>
+        <strong>Síntomas:</strong> ${sintomas}<br>
+        <strong>Malestar:</strong> ${nivel}`;
+
+      document.getElementById('registros').appendChild(nuevoRegistro);
+
+      document.getElementById('alimentos').value = '';
+      document.getElementById('sintomas').value = '';
+      document.getElementById('nivel').value = '';
+    }
+  </script>
+</body>
+</html>
